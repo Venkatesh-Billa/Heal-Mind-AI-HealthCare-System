@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Health Profile</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #F8C8DC, #98C9E4);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        h1 {
+            color: #FF6347;
+            text-align: center;
+            margin-top: 50px;
+            font-size: 3rem;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        /* Profile Section */
+        .profile-container {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 1000px;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-container:hover {
+            transform: scale(1.05);
+        }
+
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-header img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+        }
+
+        .profile-header h2 {
+            font-size: 2rem;
+            color: #333;
+            margin: 0;
+        }
+
+        .profile-header p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* Update Profile Form */
+        .update-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        .update-form input, .update-form select {
+            padding: 10px;
+            margin: 10px;
+            width: 250px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .update-form button {
+            padding: 12px 20px;
+            background-color: #FF6347;
+            border: none;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .update-form button:hover {
+            background-color: #FF4500;
+        }
+
+        /* Button */
+        .btn {
+            background-color: #FF6347;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .btn:hover {
+            background-color: #FF4500;
+        }
+
+        /* Back Button */
+        .back-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .back-btn:hover {
+            background-color: #388E3C;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Profile Header -->
+    <h1>Your Health Profile</h1>
+
+    <!-- Profile Container -->
+    <div class="profile-container">
+        <div class="profile-header">
+            <img id="profileImg" src="https://via.placeholder.com/150" alt="User Photo">
+            <h2 id="userName">John Doe</h2>
+            <p id="userInfo">Age: 30 | Height: 5'8" | Weight: 75 kg</p>
+        </div>
+        
+        <!-- Buttons -->
+        <button class="btn" onclick="window.location.href='updateProfile.html'">Update Profile</button>
+        <button class="back-btn" onclick="history.back()">Back</button>
+    </div>
+
+    <!-- Update Profile Form -->
+    <div class="update-form">
+        <h2>Update Your Profile</h2>
+        <form enctype="multipart/form-data" onsubmit="updateProfile(event)">
+            <input type="file" id="profileImage" name="profileImage" accept="image/*" onchange="previewImage()">
+            <input type="text" id="updateName" placeholder="Enter your Name" required>
+            <input type="number" id="updateAge" placeholder="Enter your Age" required>
+            <input type="number" id="updateHeight" placeholder="Enter your Height (cm)" required>
+            <input type="number" id="updateWeight" placeholder="Enter your Weight (kg)" required>
+            <button type="submit">Update Profile</button>
+        </form>
+    </div>
+
+    <script>
+        // Function to preview uploaded image
+        function previewImage() {
+            const file = document.getElementById("profileImage").files[0];
+            const reader = new FileReader();
+            reader.onloadend = function () {
+                document.getElementById("profileImg").src = reader.result;
+            };
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Function to update profile image and information
+        function updateProfile(event) {
+            event.preventDefault();
+
+            // Update profile image if selected
+            let image = document.getElementById("profileImage").files[0];
+            if (image) {
+                let reader = new FileReader();
+                reader.onloadend = function () {
+                    document.getElementById("profileImg").src = reader.result;
+                };
+                reader.readAsDataURL(image);
+            }
+
+            // Update profile details
+            let name = document.getElementById("updateName").value;
+            let age = document.getElementById("updateAge").value;
+            let height = document.getElementById("updateHeight").value;
+            let weight = document.getElementById("updateWeight").value;
+
+            document.getElementById("userName").textContent = name;
+            document.getElementById("userInfo").textContent = `Age: ${age} | Height: ${height} cm | Weight: ${weight} kg`;
+            alert("Profile Updated Successfully!");
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI HEALTH-CARE SYSTEM</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #F4F4F4;
+            margin: 0;
+            padding: 0;
+            transition: background 0.3s ease;
+        }
+        .header {
+            background-color: #002147;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .scrolling-bar {
+            background-color: #FFD700;
+            color: black;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+            white-space: nowrap;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .navbar {
+            background-color: #004080;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+        .navbar a:hover, .navbar a.active {
+            background-color: #0056b3;
+            border-radius: 5px;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        h2 {
+            color: #002147;
+            text-align: center;
+        }
+        .form-group {
+            margin: 15px 0;
+        }
+        .form-group input, .form-group button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .form-group button {
+            background-color: #DAA520;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .form-group button:hover {
+            background-color: #B8860B;
+        }
+        .output {
+            background: #e9ecef;
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 5px;
+            border-left: 5px solid #800000;
+        }
+        .footer {
+            background-color: #002147;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .chatbot-btn, .voice-btn, .emergency-btn {
+            position: fixed;
+            right: 20px;
+            color: white;
+            padding: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            border: none;
+        }
+        .chatbot-btn { bottom: 80px; background-color: #DAA520; }
+        .voice-btn { bottom: 140px; background-color: #FF4500; }
+        .emergency-btn { bottom: 200px; background-color: #D32F2F; }
+        .chatbox {
+            position: fixed;
+            bottom: 130px;
+            right: 20px;
+            width: 300px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            display: none;
+        }
+        .chatbox-header {
+            background: #DAA520;
+            padding: 10px;
+            color: white;
+            text-align: center;
+            font-weight: bold;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        .chatbox-messages {
+            padding: 10px;
+            height: 200px;
+            overflow-y: auto;
+        }
+        .chatbox-input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-top: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">AI Health-Care System</div>
+    <p style="text-align: center; font-size: 18px;">Combining "Heal" with "Mind" for a Better Tomorrow</p>
+    <div class="scrolling-bar">
+        <marquee behavior="scroll" direction="left">AI Health-Care System - Your Virtual Health Assistant!</marquee>
+    </div>
+    <div class="navbar">
+        <a href="home.html" class="active">Home</a>
+        <a href="healthprofile.html">Health Profile</a>
+        <a href="fitnessPlan.html">Fitness Plan</a>
+        <a href="nutritionplan.html">Nutrition Plan</a>
+        <a href="notifications.html">Notifications</a>
+        <a href="healthtips.html">Health Tips</a>
+        <a href="contactUs.html">Contact Us</a>
+    </div>
+    
+    <button class="chatbot-btn" onclick="toggleChatbot()">💬 AI Chatbot</button>
+    <div class="chatbox" id="chatbox">
+        <div class="chatbox-header">AI Chatbot</div>
+        <div class="chatbox-messages" id="chatboxMessages"></div>
+        <input type="text" class="chatbox-input" id="chatInput" placeholder="Type a message..." onkeypress="handleChat(event)">
+    </div>
+    
+    <footer class="footer">
+        <p>&copy; 2025 AI Health-Care System. All Rights Reserved.</p>
+    </footer>
+    
+    <script>
+        function toggleChatbot() {
+            let chatbox = document.getElementById("chatbox");
+            chatbox.style.display = chatbox.style.display === "block" ? "none" : "block";
+        }
+        function handleChat(event) {
+            if (event.key === "Enter") {
+                let input = document.getElementById("chatInput").value;
+                let chatboxMessages = document.getElementById("chatboxMessages");
+                chatboxMessages.innerHTML += `<p><strong>You:</strong> ${input}</p>`;
+                document.getElementById("chatInput").value = "";
+                chatboxMessages.innerHTML += `<p><strong>AI:</strong> I'm here to assist you!</p>`;
+            }
+        }
+    </script>
+</body>
+</html>

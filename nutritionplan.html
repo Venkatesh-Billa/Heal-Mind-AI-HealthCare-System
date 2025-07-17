@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Halth-Care System | Nutrition Plan</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #F4F4F4;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #1E6B3D; /* Dark Green */
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        h2 {
+            color: #1E6B3D; /* Dark Green */
+            text-align: center;
+        }
+        .form-group {
+            margin: 15px 0;
+        }
+        .form-group input, .form-group button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .form-group button {
+            background-color: #FF8C00; /* Dark Orange */
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .form-group button:hover {
+            background-color: #FF7F32; /* Lighter Orange */
+        }
+        .output {
+            background: #F0E68C; /* Khaki */
+            padding: 10px;
+            margin-top: 15px;
+            border-radius: 5px;
+            border-left: 5px solid #8B4513; /* SaddleBrown */
+        }
+        .back-button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 15px;
+            background-color: #8B4513; /* SaddleBrown */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            font-size: 16px;
+        }
+        .back-button:hover {
+            background-color: #5C3D2D; /* Darker Brown */
+        }
+        /* Nutrition Tips Section */
+        .tips-section {
+            background-color: #E8F5E9; /* Light Green */
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .tips-section h3 {
+            color: #1E6B3D; /* Dark Green */
+            font-size: 20px;
+            text-align: center;
+        }
+        .tips-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .tips-section li {
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+        .tips-section li::before {
+            content: "✔️";
+            margin-right: 8px;
+            color: #FF8C00; /* Dark Orange */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">AI Health-Care System| Nutrition Plan</div>
+
+    <!-- Nutrition Plan Section -->
+    <div class="container">
+        <h2>Nutrition Plan</h2>
+        <p>Eat healthy and maintain a balanced diet with your personalized nutrition plan. Track your diet goals and stay nourished.</p>
+
+        <!-- Nutrition Plan Card -->
+        <div class="card">
+            <h3>Nutrition Plan</h3>
+            <p>Fill in your nutrition goals below to get personalized diet recommendations.</p>
+            <div class="form-group">
+                <input type="text" id="nutritionGoals" placeholder="Enter your nutrition goals (e.g., eat more vegetables, reduce sugar)">
+                <button onclick="saveNutritionGoals()">Save Goals</button>
+            </div>
+            <div class="output" id="nutritionOutput"></div>
+        </div>
+
+        <!-- Nutrition Tips Section -->
+        <div class="tips-section">
+            <h3>Important Nutrition Tips</h3>
+            <ul>
+                <li>Eat a variety of fruits and vegetables every day to get essential nutrients.</li>
+                <li>Stay hydrated by drinking plenty of water throughout the day.</li>
+                <li>Limit processed foods and opt for whole foods as much as possible.</li>
+                <li>Maintain a balanced diet with the right proportions of protein, carbs, and healthy fats.</li>
+                <li>Don't skip meals—especially breakfast, as it helps to kick-start your metabolism.</li>
+                <li>Be mindful of portion sizes to avoid overeating.</li>
+                <li>Plan meals in advance to ensure a consistent and healthy eating routine.</li>
+            </ul>
+        </div>
+        <button class="back-button" onclick="window.history.back();">Back to Previous Page</button>
+    </div>
+
+    <script>
+        function saveNutritionGoals() {
+            let goals = document.getElementById("nutritionGoals").value;
+            if (goals) {
+                localStorage.setItem("nutritionGoals", goals); // Save nutrition goals to localStorage
+                displaySavedGoals();
+            } else {
+                alert("Please enter your nutrition goals.");
+            }
+        }
+
+        // Display saved goals on page load if any
+        function displaySavedGoals() {
+            const savedGoals = localStorage.getItem("nutritionGoals");
+            if (savedGoals) {
+                document.getElementById("nutritionOutput").innerHTML = `
+                    <strong>Saved Nutrition Goals:</strong><br>${savedGoals}
+                `;
+            }
+        }
+
+        // Run on page load to display any saved goals
+        window.onload = displaySavedGoals;
+    </script>
+</body>
+</html>
